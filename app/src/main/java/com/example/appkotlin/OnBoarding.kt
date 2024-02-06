@@ -8,6 +8,7 @@ import android.view.View
 import android.view.View.OnClickListener
 import android.view.View.OnLongClickListener
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -15,16 +16,20 @@ import com.google.firebase.ktx.Firebase
 
 class OnBoarding : AppCompatActivity(), OnClickListener {
 
+    lateinit var edtEmail: TextView
+    lateinit var edtPassword: TextView
     lateinit var buttonRegister:Button
     lateinit var buttonLogin:Button
     private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_on_boarding)
 
         auth = Firebase.auth
 
-        setContentView(R.layout.activity_on_boarding)
+        edtEmail=this.findViewById(R.id.edtEmail)
+        edtPassword=this.findViewById(R.id.edtPassword)
         buttonRegister=findViewById(R.id.buttonRegister)
         buttonRegister.setOnClickListener(this)
 
@@ -43,14 +48,15 @@ class OnBoarding : AppCompatActivity(), OnClickListener {
         //INICIAR SESIÓN Y VIAJAR AL HOMEVIEW
         } else if(v!!.id==R.id.buttonLogin){
 
-            var email:String="marcos@gmail.com"
-            var password:String="1234567890"
+            var email:String=edtEmail.text.toString()
+            var password:String=edtPassword.text.toString()
 
             auth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this) { task ->
+                .addOnCompleteListener(this)
+                { task ->
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
-                        Log.d("OnBoarding", "signInWithEmail:success")
+                        Log.d("OnBoarding", "Usuario logeado correctamente")
                         val user = auth.currentUser
                     } else {
                         // If sign in fails, display a message to the user.

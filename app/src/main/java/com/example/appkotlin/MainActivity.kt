@@ -28,17 +28,15 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        auth = Firebase.auth
 
+        auth = Firebase.auth
 
         edtEmail=this.findViewById(R.id.edtEmail)
         edtPassword=this.findViewById(R.id.edtPassword)
         buttonSignUp=this.findViewById(R.id.buttonSignUp)
         buttonSignIn=this.findViewById(R.id.buttonSignIn)
 
-
         buttonSignUp.setOnClickListener(this)
-
         buttonSignIn.setOnClickListener(this)
 
     }
@@ -46,12 +44,13 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     override fun onClick(v: View?) {
         if(v!!.id==R.id.buttonSignUp) {
 
-            var email:String="marcos@gmail.com"
-            var password:String="1234567890"
+            var email:String=edtEmail.text.toString()
+            var password:String=edtPassword.text.toString()
 
             //CREAR UN USUARIO EN FIREBASE AUTHENTICATION
             auth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this) { task ->
+                .addOnCompleteListener(this)
+                { task ->
                     if (task.isSuccessful) {
                         Log.d("MainActivity", "createUserWithEmail:success")
                         val user = auth.currentUser
