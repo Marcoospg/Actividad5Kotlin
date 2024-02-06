@@ -9,7 +9,11 @@ import android.view.View
 import android.view.View.OnClickListener
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity(), OnClickListener {
 
@@ -17,11 +21,15 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     lateinit var edtPassword: TextView
     lateinit var buttonSignUp:Button
     lateinit var buttonSignIn:Button
+    private lateinit var auth: FirebaseAuth
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        auth = Firebase.auth
+
 
         edtEmail=this.findViewById(R.id.edtEmail)
         edtPassword=this.findViewById(R.id.edtPassword)
@@ -38,6 +46,24 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     override fun onClick(v: View?) {
         if(v!!.id==R.id.buttonSignUp) {
 
+            var email:String="marcos@gmail.com"
+            var password:String="1234567890"
+
+            //CREAR UN USUARIO EN FIREBASE AUTHENTICATION
+            auth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        Log.d("MainActivity", "createUserWithEmail:success")
+                        val user = auth.currentUser
+                    } else {
+                        Log.w("MainActivity", "createUserWithEmail:failure", task.exception)
+                        Toast.makeText(
+                            baseContext,
+                            "Correo electrónico ya registrado. Por favor, elija otro.",
+                            Toast.LENGTH_SHORT,
+                        ).show()
+                    }
+                }
         }
         else if(v!!.id==R.id.buttonSignIn){
             var OnBoarding: Intent = Intent(this,OnBoarding::class.java)
