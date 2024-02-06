@@ -5,51 +5,72 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@color/colorFondo"
     android:id="@+id/rootConstrainLayout">
 
-    <TextView
-        android:id="@+id/tvHolaMundo"
-        android:layout_width="409dp"
-        android:layout_height="176dp"
-        android:text="Hello World!"
-        android:textAlignment="center"
-        android:textColor="@color/design_default_color_primary_variant"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageView
+        android:id="@+id/imageLogo"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/kyty"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.23" />
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="16dp"/>
 
-    <LinearLayout
+    <EditText
+        android:id="@+id/edtEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="1dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:hint="Correo Electrónico"
+        app:layout_constraintTop_toBottomOf="@+id/imageLogo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        android:layout_marginTop="16dp"
+        android:inputType="textEmailAddress" />
 
-        <Button
-            android:id="@+id/buttonOk"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="clickOk"
-            android:text="Ok" />
+    <EditText
+        android:id="@+id/edtPassword"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Contraseña"
+        app:layout_constraintTop_toBottomOf="@+id/edtEmail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="8dp"
+        android:inputType="textPassword" />
 
-        <Button
-            android:id="@+id/buttonCancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="clickCancel"
-            android:text="Cancel" />
-    </LinearLayout>
+    <Button
+        android:id="@+id/buttonSignUp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Registrarse"
+        app:layout_constraintTop_toBottomOf="@+id/edtPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        android:onClick="clickSignUp" />
+
+    <TextView
+        android:id="@+id/tvOr"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="o"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSignUp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"/>
+
+    <Button
+        android:id="@+id/buttonSignIn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Iniciar Sesión"
+        app:layout_constraintTop_toBottomOf="@+id/tvOr"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        android:onClick="clickSignIn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
