@@ -54,6 +54,16 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                     if (task.isSuccessful) {
                         Log.d("MainActivity", "createUserWithEmail:success")
                         val user = auth.currentUser
+
+                        var OnBoarding: Intent = Intent(this,OnBoarding::class.java)
+                        startActivity(OnBoarding)
+                        finish()
+
+                        Toast.makeText(
+                            baseContext,
+                            "Correo electrónico registrado con éxito.",
+                            Toast.LENGTH_SHORT,
+                        ).show()
                     } else {
                         Log.w("MainActivity", "createUserWithEmail:failure", task.exception)
                         Toast.makeText(
