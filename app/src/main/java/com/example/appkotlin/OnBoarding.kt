@@ -1,6 +1,7 @@
 package com.example.appkotlin
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,8 +9,11 @@ import android.view.View
 import android.view.View.OnClickListener
 import android.view.View.OnLongClickListener
 import android.widget.Button
+import android.widget.FrameLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet.Constraint
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -36,6 +40,23 @@ class OnBoarding : AppCompatActivity(), OnClickListener {
         buttonLogin=findViewById(R.id.buttonLogin)
         buttonLogin.setOnClickListener(this)
 
+        main()
+    }
+
+    private fun main() {
+        // Configura la interfaz principal aquí
+        // Puedes realizar operaciones con los elementos de la interfaz si es necesario
+        println("entro en el main")
+        // Llama a la función cuerpo y pasa un color específico
+        cuerpo(Color.rgb(178, 218, 250)) // Puedes cambiar el color según tus necesidades
+    }
+
+    private fun cuerpo(color: Int) {
+        // Obtén la referencia al FrameLayout llamado frameMain
+        val frameMain = findViewById<ConstraintLayout>(R.id.mainLayout)
+
+        // Cambia el color de fondo del frameMain con el color proporcionado
+        frameMain.setBackgroundColor(color)
     }
 
     override fun onClick(v: View?) {

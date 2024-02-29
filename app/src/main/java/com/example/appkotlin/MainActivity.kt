@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import android.view.View.OnClickListener
 import android.widget.Button
+import android.widget.FrameLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -23,8 +24,6 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     lateinit var buttonSignIn:Button
     private lateinit var auth: FirebaseAuth
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -39,7 +38,9 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         buttonSignUp.setOnClickListener(this)
         buttonSignIn.setOnClickListener(this)
 
+
     }
+
 
     override fun onClick(v: View?) {
         if(v!!.id==R.id.buttonSignUp) {
