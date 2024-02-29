@@ -7,13 +7,10 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.View.OnClickListener
-import android.view.View.OnLongClickListener
 import android.widget.Button
-import android.widget.FrameLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.constraintlayout.widget.ConstraintSet.Constraint
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -25,6 +22,7 @@ class OnBoarding : AppCompatActivity(), OnClickListener {
     lateinit var buttonRegister:Button
     lateinit var buttonLogin:Button
     lateinit var switchColorButton: Button
+    lateinit var switchActivity2Button: Button
     private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,6 +42,9 @@ class OnBoarding : AppCompatActivity(), OnClickListener {
 
         switchColorButton = findViewById(R.id.switchColor)
         switchColorButton.setOnClickListener(this)
+
+        switchActivity2Button = findViewById(R.id.switchActivity2)
+        switchActivity2Button.setOnClickListener(this)
 
         main()
     }
@@ -101,6 +102,10 @@ class OnBoarding : AppCompatActivity(), OnClickListener {
         }else if(v!!.id==R.id.switchColor){
             Log.d("SwitchColor", "Entro en el switchColor")
             cambiarColorFondo()
+        }else if (v!!.id == R.id.switchActivity2) {
+            val welcomeIntent = Intent(this, Activity2::class.java)
+            startActivity(welcomeIntent)
+            finish()
         }
 
     }
