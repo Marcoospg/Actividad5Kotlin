@@ -8,6 +8,16 @@
     android:padding="16dp"
     tools:context=".OnBoarding">
 
+    <EditText
+        android:id="@+id/edtMensaje"
+        android:layout_width="350dp"
+        android:layout_height="78dp"
+        android:layout_marginBottom="144dp"
+        android:hint="Escribe aquí tu mensaje"
+        android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="5dp" />
+
     <Button
         android:id="@+id/switchColor"
         android:layout_width="0dp"
@@ -22,9 +32,10 @@
         android:id="@+id/switchActivity2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="304dp"
         android:text="Activity2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.218"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtPassword" />
 

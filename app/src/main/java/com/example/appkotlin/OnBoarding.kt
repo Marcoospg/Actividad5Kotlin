@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import android.view.View.OnClickListener
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -103,7 +104,10 @@ class OnBoarding : AppCompatActivity(), OnClickListener {
             Log.d("SwitchColor", "Entro en el switchColor")
             cambiarColorFondo()
         }else if (v!!.id == R.id.switchActivity2) {
+            val edtMensaje = findViewById<EditText>(R.id.edtMensaje)
+            val mensaje: String = edtMensaje.text.toString()
             val welcomeIntent = Intent(this, Activity2::class.java)
+            welcomeIntent.putExtra("MENSAJE_EXTRA", mensaje)
             startActivity(welcomeIntent)
             finish()
         }
