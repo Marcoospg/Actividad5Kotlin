@@ -24,6 +24,7 @@ class OnBoarding : AppCompatActivity(), OnClickListener {
     lateinit var edtPassword: TextView
     lateinit var buttonRegister:Button
     lateinit var buttonLogin:Button
+    lateinit var switchColorButton: Button
     private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,11 +35,15 @@ class OnBoarding : AppCompatActivity(), OnClickListener {
 
         edtEmail=this.findViewById(R.id.edtEmail)
         edtPassword=this.findViewById(R.id.edtPassword)
+
         buttonRegister=findViewById(R.id.buttonRegister)
         buttonRegister.setOnClickListener(this)
 
         buttonLogin=findViewById(R.id.buttonLogin)
         buttonLogin.setOnClickListener(this)
+
+        switchColorButton = findViewById(R.id.switchColor)
+        switchColorButton.setOnClickListener(this)
 
         main()
     }
@@ -79,6 +84,9 @@ class OnBoarding : AppCompatActivity(), OnClickListener {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d("OnBoarding", "Usuario logeado correctamente")
                         val user = auth.currentUser
+                        var HomeView: Intent = Intent(this,HomeView::class.java)
+                        startActivity(HomeView)
+                        finish()
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w("OnBoarding", "signInWithEmail:failure", task.exception)
@@ -89,11 +97,20 @@ class OnBoarding : AppCompatActivity(), OnClickListener {
                         ).show()
                     }
                 }
-            var HomeView: Intent = Intent(this,HomeView::class.java)
-            startActivity(HomeView)
-            finish()
+
+        }else if(v!!.id==R.id.switchColor){
+            Log.d("SwitchColor", "Entro en el switchColor")
+            cambiarColorFondo()
         }
 
     }
 
+    private fun cambiarColorFondo() {
+        // Generar un color aleatorio
+        val randomColor = Color.rgb((0..255).random(), (0..255).random(), (0..255).random())
+
+        // Llama a la función cuerpo y pasa el color aleatorio
+        cuerpo(randomColor)
+        Toast.makeText(this, "Color cambiado", Toast.LENGTH_SHORT).show()
+    }
 }
